@@ -15,7 +15,9 @@
 
 - Tracker preference: TorrentLeech is a plus, but not absolute over clearly better public results.
 - Codec preference: x265 is a plus, not required (Tdarr handles re-encoding).
+- Audio/source integrity preference: prefer releases with stronger audio/source characteristics (e.g., solid 5.1 and cleaner source chain) over weaker low-bitrate/stereo options when other factors are close.
 
-## Tdarr-aware rule
+## Tdarr-aware rules
 
-Do not blindly pick the smallest file. Prefer better source quality that Tdarr can compress cleanly.
+- Do not blindly pick the smallest file. Prefer better source quality that Tdarr can compress cleanly.
+- Penalize tiny high-res encodes that are likely over-compressed for their claimed resolution.
