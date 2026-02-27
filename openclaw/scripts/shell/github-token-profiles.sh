@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 # GitHub token profile helpers for local shell use.
-# Requires: op CLI + OP_REF_GH_TOKEN_RO / OP_REF_GH_TOKEN_PR
+# Requires: op CLI and valid OP_SERVICE_ACCOUNT_TOKEN.
+
+# 1Password refs (defaults by item ID; can be overridden by env)
+: "${OP_REF_GH_TOKEN_RO:=op://Clawd/wb5h3iksiy6kvl4yqujwxozxke/token}"
+: "${OP_REF_GH_TOKEN_PR:=op://Clawd/d2viyad6bwxv2gjvgat2ao73xu/token}"
 
 gh-ro() {
   if ! command -v op >/dev/null 2>&1; then
     echo "[gh] op CLI not found"; return 1
-  fi
-  if [[ -z "${OP_REF_GH_TOKEN_RO:-}" ]]; then
-    echo "[gh] OP_REF_GH_TOKEN_RO is not set"; return 1
   fi
   unset GH_TOKEN GITHUB_TOKEN
   export GH_TOKEN="$(op read "$OP_REF_GH_TOKEN_RO")"
@@ -20,9 +21,6 @@ gh-ro() {
 gh-pr() {
   if ! command -v op >/dev/null 2>&1; then
     echo "[gh] op CLI not found"; return 1
-  fi
-  if [[ -z "${OP_REF_GH_TOKEN_PR:-}" ]]; then
-    echo "[gh] OP_REF_GH_TOKEN_PR is not set"; return 1
   fi
   unset GH_TOKEN GITHUB_TOKEN
   export GH_TOKEN="$(op read "$OP_REF_GH_TOKEN_PR")"
