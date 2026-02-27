@@ -63,6 +63,8 @@ Skills define _how_ tools work. This file is for _your_ specifics — the stuff 
 
 ## 1Password references (non-secret)
 
+Defaults are embedded in the helper script and can be overridden by env on a host if needed.
+
 - `OP_REF_GH_TOKEN_RO=op://Clawd/wb5h3iksiy6kvl4yqujwxozxke/token`
 - `OP_REF_GH_TOKEN_PR=op://Clawd/d2viyad6bwxv2gjvgat2ao73xu/token`
 
@@ -75,7 +77,8 @@ Skills define _how_ tools work. This file is for _your_ specifics — the stuff 
 
 ## Shell helpers (source of truth)
 
-- Script: `openclaw/scripts/shell/github-token-profiles.sh`
+- Canonical implementation: `openclaw/scripts/shell/github-token-profiles.sh`
+- Wrapper CLI: `openclaw/scripts/github-profile.sh {ro|pr|off}`
 - Provides: `gh-ro`, `gh-pr`, `gh-off`, `gh-safe`
 - Recommended `.bashrc` source line:
   - `source /home/clawd/.openclaw/workspace/repos/clawd-configs/openclaw/scripts/shell/github-token-profiles.sh`

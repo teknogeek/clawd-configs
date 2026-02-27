@@ -22,7 +22,8 @@ Defaults are embedded in the helper script and can be overridden by env on a hos
 
 ## Shell helpers (source of truth)
 
-- Script: `openclaw/scripts/shell/github-token-profiles.sh`
+- Canonical implementation: `openclaw/scripts/shell/github-token-profiles.sh`
+- Wrapper CLI: `openclaw/scripts/github-profile.sh {ro|pr|off}`
 - Provides: `gh-ro`, `gh-pr`, `gh-off`, `gh-safe`
 - Recommended `.bashrc` source line:
   - `source /home/clawd/.openclaw/workspace/repos/clawd-configs/openclaw/scripts/shell/github-token-profiles.sh`
