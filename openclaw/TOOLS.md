@@ -1,76 +1,116 @@
-# TOOLS.md - Local Notes
+# TOOLS.md - Local Notes (Generated)
+
+> This file is generated from detailed docs in `openclaw/*.md`.
+> Source-of-truth is the split files, not this compiled output.
 
 Skills define _how_ tools work. This file is for _your_ specifics — the stuff that's unique to your setup.
 
-## What Goes Here
+---
 
-Things like:
 
-- Camera names and locations
-- SSH hosts and aliases
-- Preferred voices for TTS
-- Speaker/room names
-- Device nicknames
-- Anything environment-specific
+# Obsidian / Notes Headless Workflow
 
-## Examples
+## Vault path
 
-```markdown
-### Cameras
+- `/home/clawd/.openclaw/workspace/vaults/notes`
 
-- living-room → Main area, 180° wide angle
-- front-door → Entrance, motion-triggered
+## Sync discipline (required)
 
-### SSH
+1. Before note read/write operations:
+   - `git -C /home/clawd/.openclaw/workspace/vaults/notes pull --rebase --autostash`
+2. After note writes:
+   - commit + push immediately.
 
-- home-server → 192.168.1.100, user: admin
+## CLI
 
-### TTS
+- Migrated to `notesmd-cli` (rename from `obsidian-cli`).
+- Workspace skill override path:
+  - `~/.openclaw/workspace/skills/obsidian/SKILL.md`
 
-- Preferred voice: "Nova" (warm, slightly British)
-- Default speaker: Kitchen HomePod
-```
 
-## Notes Repo Workflow
+# Media Selection Policy v1 (Radarr/Sonarr + Tdarr-aware)
 
-- Obsidian/notes vault repo: `/home/clawd/.openclaw/workspace/vaults/notes`
-- Before any read/write note operation, sync first:
-  - `git -C /home/clawd/.openclaw/workspace/vaults/notes pull --rebase --autostash`
-- After note changes, commit and push immediately to reduce conflicts.
+## Defaults
 
-## Media Automation Preferences
+- Default movie target quality: 1080p (`HD-1080p`) unless explicitly requested otherwise.
+- Add without auto-search; perform manual search/ranking.
 
-- Default movie target quality: 1080p (`HD-1080p` profile in Radarr) unless explicitly requested otherwise.
-- Manual search ranking preference (in order):
-  1. Best overall quality that fits target
-  2. Higher seeders
-  3. Reasonable size/value (avoid unnecessarily huge releases)
-- Tracker preference: TorrentLeech (private tracker) is a plus, but do not force it over clearly better public results.
-- Codec preference: x265 is a plus, but not required (Tdarr handles re-encoding).
+## Manual ranking order
 
-## GitHub Access Workflow (Security Baseline)
+1. Best overall quality that fits target profile.
+2. Higher seeders.
+3. Reasonable size/value (avoid unnecessarily huge releases).
 
-- Default mode: **read-only** GitHub token via 1Password (`gh-ro`).
-- Escalation mode: **PR/write** token only when explicitly requested (`gh-pr`).
-- Cleanup mode: clear token env after write tasks (`gh-off`).
-- `gh-safe` wrapper is available to block likely write-capable gh commands unless in PR profile.
+## Preference modifiers
 
-### 1Password secret refs (non-secret pointers)
+- Tracker preference: TorrentLeech is a plus, but not absolute over clearly better public results.
+- Codec preference: x265 is a plus, not required (Tdarr handles re-encoding).
+- Audio/source integrity preference: prefer releases with stronger audio/source characteristics (e.g., solid 5.1 and cleaner source chain) over weaker low-bitrate/stereo options when other factors are close.
+
+## Tdarr-aware rules
+
+- Do not blindly pick the smallest file. Prefer better source quality that Tdarr can compress cleanly.
+- Penalize tiny high-res encodes that are likely over-compressed for their claimed resolution.
+
+
+# OpenClaw GitHub Auth & Access
+
+## Current model
+
+- GitHub access uses PATs stored in 1Password vault `Clawd`.
+- Default profile is **read-only**.
+- Write/PR profile is used only on explicit request.
+
+## 1Password references (non-secret)
 
 - `OP_REF_GH_TOKEN_RO=op://Clawd/wb5h3iksiy6kvl4yqujwxozxke/token`
 - `OP_REF_GH_TOKEN_PR=op://Clawd/d2viyad6bwxv2gjvgat2ao73xu/token`
 
-### Rules
+## Bash helper workflow (from local TOOLS.md)
+
+- `gh-ro` → load/auth with read-only token.
+- `gh-pr` → load/auth with read-write token for push/PR operations.
+- `gh-off` → clear token env/session after write tasks.
+- `gh-safe` → wrapper intended to block likely write-capable `gh` commands unless in PR/write profile.
+
+## Rules
 
 - Never store raw PAT values in workspace files.
-- Keep RO as default for all routine repo access.
-- Use PR token only for branch push + PR workflows.
-- Branch safety baseline is applied repo-wide (no force-push, no default-branch deletion where supported).
+- Keep RO as default for routine repo access.
+- Escalate to R/W only for explicit write scopes (branch push, PR creation, issue edits).
+- Return to `gh-off` after write tasks.
+- Branch safety baseline: no force-push and no default-branch deletion where supported.
 
-## Why Separate?
 
-Skills are shared. Your setup is yours. Keeping them apart means you can update skills without losing your notes, and share skills without leaking your infrastructure.
+# 1Password Secret Handling
 
----
+## Integration
 
-Add whatever helps you do your job. This is your cheat sheet.
+- OpenClaw runtime uses `OP_SERVICE_ACCOUNT_TOKEN` from service env.
+- Vault used for agent-accessible items: `Clawd`.
+
+## Policy
+
+- Prefer 1Password for secret exchange instead of chat.
+- Do not print secret values unless explicitly requested for that item.
+- Store API keys and tokens as separate named items with clear fields.
+- Never persist raw secrets in repo files.
+
+## Important item references (non-secret)
+
+- GitHub R/O PAT item: `TeknoClawd PAT - R/O` (field: `token`)
+- GitHub R/W PAT item: `TeknoClawd PAT - R/W` (field: `token`)
+- OpenClaw gateway token item: `OpenClaw Gateway Token`
+- Service account auth token item: `Service Account Auth Token: TeknoClawd`
+
+
+# OpenClaw Sandbox Runtime Notes
+
+Current intended sandbox posture:
+
+- `agents.defaults.sandbox.mode: non-main`
+- Docker-backed sandbox enabled
+- network: `bridge`
+- workspace access: `rw`
+
+Docker access requires `clawd` in `docker` group.

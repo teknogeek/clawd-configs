@@ -1,20 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
-WS_ROOT="/home/clawd/.openclaw/workspace"
-SRC="$WS_ROOT/TOOLS.md"
-DST="$REPO_ROOT/openclaw/TOOLS.md"
-if [[ ! -f "$SRC" ]]; then
-  echo "missing source: $SRC" >&2
-  exit 1
-fi
-cp "$SRC" "$DST"
+# Build generated TOOLS.md from split docs
+"$REPO_ROOT/openclaw/scripts/build-tools.sh"
 cd "$REPO_ROOT"
-git add openclaw/TOOLS.md
+git add openclaw/*.md openclaw/scripts/*.sh
 if ! git diff --cached --quiet; then
-  git commit -m "openclaw: sync TOOLS.md from workspace"
+  git commit -m "openclaw: rebuild generated TOOLS.md from split docs"
   git push
-  echo "Pushed TOOLS.md to clawd-configs"
+  echo "Pushed split docs + generated TOOLS.md"
 else
-  echo "No TOOLS.md changes to push"
+  echo "No changes to push"
 fi
