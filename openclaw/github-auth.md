@@ -18,6 +18,13 @@
 - `gh-off` → clear token env/session after write tasks.
 - `gh-safe` → wrapper intended to block likely write-capable `gh` commands unless in PR/write profile.
 
+## Shell helpers (source of truth)
+
+- Script: `openclaw/scripts/shell/github-token-profiles.sh`
+- Provides: `gh-ro`, `gh-pr`, `gh-off`, `gh-safe`
+- Recommended `.bashrc` source line:
+  - `source /home/clawd/.openclaw/workspace/repos/clawd-configs/openclaw/scripts/shell/github-token-profiles.sh`
+
 ## Rules
 
 - Never store raw PAT values in workspace files.
