@@ -8,6 +8,8 @@
 
 ## 1Password references (non-secret)
 
+Defaults are embedded in the helper script and can be overridden by env on a host if needed.
+
 - `OP_REF_GH_TOKEN_RO=op://Clawd/wb5h3iksiy6kvl4yqujwxozxke/token`
 - `OP_REF_GH_TOKEN_PR=op://Clawd/d2viyad6bwxv2gjvgat2ao73xu/token`
 
