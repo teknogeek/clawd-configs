@@ -2,17 +2,19 @@
 
 ## Defaults
 
-- Default movie target quality: 1080p unless explicitly requested otherwise.
+- Default movie target quality: 1080p (`HD-1080p`) unless explicitly requested otherwise.
 - Add without auto-search; perform manual search/ranking.
 
-## Ranking order
+## Manual ranking order
 
-1. Target quality/profile match.
-2. Source integrity (avoid overly compressed tiny encodes).
-3. Seeders.
-4. Reasonable size/value (avoid unnecessarily huge files).
-5. Tracker preference: TorrentLeech is a plus, not absolute.
-6. Codec preference: x265 is a plus, not required (Tdarr re-encodes).
+1. Best overall quality that fits target profile.
+2. Higher seeders.
+3. Reasonable size/value (avoid unnecessarily huge releases).
+
+## Preference modifiers
+
+- Tracker preference: TorrentLeech is a plus, but not absolute over clearly better public results.
+- Codec preference: x265 is a plus, not required (Tdarr handles re-encoding).
 
 ## Tdarr-aware rule
 
