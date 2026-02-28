@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
-# Build generated TOOLS.md from split docs
-"$REPO_ROOT/openclaw/scripts/build-tools.sh"
+WS_ROOT="/home/clawd/.openclaw/workspace"
+cp "$WS_ROOT/TOOLS.md" "$REPO_ROOT/openclaw/TOOLS.md"
 cd "$REPO_ROOT"
-git add openclaw/*.md openclaw/scripts/*.sh
+git add openclaw/TOOLS.md
 if ! git diff --cached --quiet; then
-  git commit -m "openclaw: rebuild generated TOOLS.md from split docs"
+  git commit -m "openclaw: sync TOOLS.md index from workspace"
   git push
-  echo "Pushed split docs + generated TOOLS.md"
+  echo "Pushed TOOLS.md index"
 else
-  echo "No changes to push"
+  echo "No TOOLS.md changes to push"
 fi
