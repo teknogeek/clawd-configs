@@ -16,7 +16,8 @@
 ## Preference modifiers
 
 - Tracker preference: TorrentLeech is a plus, but not absolute over clearly better public results.
-- Codec preference: x265 is a plus, not required (Tdarr handles re-encoding).
+- Codec preference: x265 is a plus.
+- Tdarr behavior override: if Tdarr is configured to skip x265/HEVC sources, prefer better size/value among good 1080p x265 candidates instead of defaulting to heavier BluRay x265 encodes.
 - Audio/source integrity preference: prefer releases with stronger audio/source characteristics (e.g., solid 5.1 and cleaner source chain) over weaker low-bitrate/stereo options when other factors are close.
 
 ## Tdarr-aware rules
