@@ -13,7 +13,9 @@ Details: `tools/obsidian-notes.md`
 
 ## Media Automation Preferences
 
-- Default movie target quality: 1080p (`HD-1080p` profile in Radarr) unless explicitly requested otherwise.
+- Default target quality for both movies and series: 1080p unless explicitly requested otherwise.
+  - Radarr: `HD-1080p` profile for movies.
+  - Sonarr: use the equivalent 1080p-focused profile/settings for series.
 - Manual search selection policy is documented in:
   - `tools/media-selection-policy.md`
 

@@ -2,7 +2,9 @@
 
 ## Defaults
 
-- Default movie target quality: 1080p (`HD-1080p`) unless explicitly requested otherwise.
+- Default target quality: 1080p unless explicitly requested otherwise.
+  - Radarr (movies): `HD-1080p` profile.
+  - Sonarr (series): equivalent 1080p-focused profile/settings.
 - Add without auto-search; perform manual search/ranking.
 
 ## Manual ranking order
