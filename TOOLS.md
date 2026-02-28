@@ -18,6 +18,8 @@ Details: `tools/obsidian-notes.md`
   - Sonarr: use the equivalent 1080p-focused profile/settings for series.
 - Manual search selection policy is documented in:
   - `tools/media-selection-policy.md`
+- ARR access + verified profile mapping reference:
+  - `tools/media-arr-access.md`
 
 ## GitHub Access Workflow
 
