@@ -18,3 +18,16 @@
 - GitHub R/W PAT item: `TeknoClawd PAT - R/W` (field: `token`)
 - OpenClaw gateway token item: `OpenClaw Gateway Token`
 - Service account auth token item: `Service Account Auth Token: TeknoClawd`
+
+## Media / Tracker refs (use **item IDs**, not titles/labels)
+
+Use `op read op://...` refs when scripting; it avoids the “wrong field label” footgun.
+
+- qBittorrent (id: `f4p5guhnnmkii44wglqsu7b5wy`)
+  - username: `op://Clawd/f4p5guhnnmkii44wglqsu7b5wy/username`
+  - password: `op://Clawd/f4p5guhnnmkii44wglqsu7b5wy/password`
+  - port: `op://Clawd/f4p5guhnnmkii44wglqsu7b5wy/Port:`
+
+- TorrentLeech (title: `TorrentLeech` — prefer item id if/when we record it)
+  - username: `op://Clawd/TorrentLeech/username`
+  - password: `op://Clawd/TorrentLeech/password`
