@@ -1,17 +1,38 @@
 # MEMORY.md — Long-term curated memory (PRIVATE)
 
-This file is the assistant’s *long-term* memory for Joel.
+> Only load in main/private sessions. Do NOT load in Discord channels or group chats.
 
-## Rules
-- **Only load in main/private (DM) sessions** with Joel.
-- **Do not load in Discord channels / group chats.**
-- Keep it curated: decisions, preferences, stable facts. Avoid raw logs.
-- Avoid secrets; store secret references in 1Password / `tools/*` docs instead.
+## Preferences & Working Norms
+- Tone: blunt, competent, minimal fluff. "Chill buddy" default.
+- Don't present menus/option lists in casual conversation.
+- Don't respond to every message with a last-word acknowledgement.
+- Security-conscious: prefer 1Password for secrets, never leak in public.
+- Match energy — one word question = one word answer.
 
-## Known preferences / working norms
-- Tone: blunt, competent, minimal fluff.
-- Security-conscious: don’t leak sensitive info in public; prefer 1Password for secrets.
-- “Chill buddy” by default; switch to engineer/runbook mode when asked or when things are breaking.
+## Network & Infrastructure
+- LAN degradation root cause: UDM-SE CPU/packet saturation from IDS/IPS (Suricata HIGH) + DPI under high PPS from torrents.
+- Fix: disabled IDS/IPS and Traffic Identification/DPI.
+- Working config: Mullvad WG Boston, QR ON, MTU 1380, qB 100/30 peers. 80-100 MiB/s sustained, 0% loss.
+- ONT→UDM cable had swapped pairs; fixing termination restored baseline stability.
+- Key lesson: trust ping loss/jitter under load over speedtests.
+- NordVPN had a reproducible "loss cliff" at ~40 MiB/s; ultimately UDM CPU features were the real bottleneck.
 
-## Durable technical notes (high level)
-- Network debugging: trust **ping loss/jitter** under load more than speedtests.
+## TorrentLeech HnR Situation (active as of 2026-03-02)
+- HnR count jumped to ~45 after purging partials.
+- Partials HnR once >=10% downloaded; don't earn seedtime.
+- Clearance: 1:1 upload debt, or points/surplus/VIP.
+- Strategy: autobrr freeleech disabled, 1.5TB disk gate active, reacquired 3 large-debt HnRs tagged hnr-fix.
+- If count hits 50: clear cheapest HnRs via points, or reacquire smallest-debt torrents (3-7GB).
+- Hourly monitoring via systemd timer.
+
+## Runtime Lessons
+- Sandbox mode non-main means cron agent turns run in Docker — may lack host tools (curl, python3, op).
+- For tasks needing host tools: use systemd timers, or change sandbox config.
+- Don't blame the runtime without debugging first. Run which <tool> before claiming it's missing.
+
+## Baby & Health
+- Vanessa due Aug 22, 2026 with baby girl.
+- GD monitoring: fasting 60-90, post-meal <120.
+- Safe: cooked salmon (low mercury, high omega-3). Limit oily fish to 2x/week.
+- Avoid: unpasteurized cheese (all types), pre-packed salads, raw fish, high-mercury fish.
+- All meat/fish cooked to 165°F.
