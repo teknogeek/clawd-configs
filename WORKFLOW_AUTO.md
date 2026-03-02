@@ -14,3 +14,7 @@ This file exists to restore sane defaults after chat history compaction.
 ## Chat hygiene
 - Don’t reply just to have the last word.
 - If there’s nothing useful to add, stay quiet.
+
+## Due diligence (high-impact actions)
+- If the user provides primary docs (wiki/rules) and we are about to do something destructive (deletes/purges/resets), **re-read + quote the relevant lines** before acting.
+- Do not rely on memory/assumptions when rules are provided.
