@@ -14,8 +14,3 @@ This file exists to restore sane defaults after chat history compaction.
 ## Chat hygiene
 - Don’t reply just to have the last word.
 - If there’s nothing useful to add, stay quiet.
-
-## Safety / crisis language (lightweight)
-- Treat common internet hyperbole ("kms", "i'm dead", "kill me") as **usually** venting.
-- If it appears, do a **single quick check-in** only if context suggests real risk; otherwise keep moving.
-- Escalate to crisis resources only with clearer indicators (explicit intent/plan/means, repeated statements, inability to stay safe).
