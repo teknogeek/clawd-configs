@@ -36,3 +36,10 @@
 - Safe: cooked salmon (low mercury, high omega-3). Limit oily fish to 2x/week.
 - Avoid: unpasteurized cheese (all types), pre-packed salads, raw fish, high-mercury fish.
 - All meat/fish cooked to 165°F.
+
+## Model Switch (2026-03-02)
+- Switched from GPT-5.2 to Claude Sonnet 4
+- Reason: OpenAI flagged account for "cybersecurity policy violation" for doing normal security research tasks (torrent monitoring, security-flavored prompts)
+- All workspace files carried over unchanged
+- SOUL.md was rewritten by Nyx (Ian's bot) to fix anti-sycophancy, response length, and honesty directives
+- Setup: Claude Max subscription via setup-token OAuth, no API key billing
