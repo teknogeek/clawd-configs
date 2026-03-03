@@ -34,6 +34,13 @@ m=re.search(r'har_surplus">\s*([^<]+)<', html)
 print(m.group(1).strip() if m else '')
 PY
 )
+ratio=$(python3 - "$html_file" <<'PY'
+import re,sys
+html=open(sys.argv[1],'r',encoding='utf-8',errors='ignore').read()
+m=re.search(r'title="Ratio"[^>]*>.*?(\d+\.\d+)\s*</div>', html, re.DOTALL)
+print(m.group(1) if m else '')
+PY
+)
 
 if [[ -z "$count" ]]; then
   echo "TL HnR watch parse failed"
@@ -56,13 +63,14 @@ fi
 
 now_utc=$(date -u +%FT%TZ)
 
-python3 - "$STATE_JSON" "$count" "$points" "$surplus" "$now_utc" <<'PY'
+python3 - "$STATE_JSON" "$count" "$points" "$surplus" "$ratio" "$now_utc" <<'PY'
 import json,sys
 path=sys.argv[1]
 count=int(sys.argv[2])
 points=sys.argv[3]
 surplus=sys.argv[4]
-now=sys.argv[5]
+ratio=sys.argv[5]
+now=sys.argv[6]
 try:
   prev=json.load(open(path))
 except Exception:
@@ -71,6 +79,7 @@ prev.update({
   "lastCount": count,
   "lastPoints": points,
   "lastSurplus": surplus,
+  "lastRatio": ratio,
   "lastCheckedUtc": now,
 })
 open(path,'w').write(json.dumps(prev,indent=2)+"\n")
