@@ -1,7 +1,7 @@
 {
-  "ok": true,
-  "lastCount": 42,
-  "lastPoints": "1,604.30",
-  "lastSurplus": "9.65 GB",
-  "lastCheckedUtc": "2026-03-02T21:20:18Z"
+  "lastCount": 30,
+  "lastCheckedUtc": "2026-03-10T19:04:12Z",
+  "lastPoints": "3,160.45",
+  "lastSurplus": "302.84 GB",
+  "lastRatio": "2.987"
 }

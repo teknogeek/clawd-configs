@@ -4,6 +4,10 @@
     "1password": {
       "version": "1.0.1",
       "installedAt": 1772223253161
+    },
+    "agent-browser": {
+      "version": "0.2.0",
+      "installedAt": 1772497878141
     }
   }
 }
